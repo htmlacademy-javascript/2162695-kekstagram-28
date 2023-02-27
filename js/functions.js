@@ -1,32 +1,17 @@
 
-function strLenght(str, numb){
-  str = str.length;
-  if (str <= numb){
-    return true;
-  }
-  return false;
-}
+const checkStringLength = (string, number) => string.length <= number;
 
-function palindrome(str){
-  str = str.toLowerCase().replaceAll(' ', '');
-  let j = str.length - 1;
-  for (let i = 0; i < j; i++,j--) {
-    if (str[i] !== str[j]){
-      return false;
-    }
-  }
-  return true;
-}
+const isPalindrome = (string) => {
+  string = string.toLowerCase().replaceAll(' ', '');
+  return string === string.split('').reverse().join('');
+};
 
-function extractDigits(str) {
-  const digitString = str.replace(/[^0-9]/g, '');
-  return digitString === '' ? NaN : parseInt(digitString);
-}
+const extractDigits = (string) => parseInt(String(string).replace(/[^0-9]/g, ''), 10);
 
-function padString(str, minLength, filler) {
-  while (str.length < minLength) {
-    str = filler.slice(0, minLength - str.length) + str;
+const createString = (string, minLength, filler) => {
+  while (string.length < minLength) {
+    string = filler.slice(0, minLength - string.length) + string;
   }
-  return str;
-}
+  return string;
+};
 
