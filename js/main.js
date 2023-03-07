@@ -11,6 +11,7 @@ const DESCRIPTIONS = ['С лучшим другом.','В отпуске.','Кр
 
 let commentId = 1;
 let photoId = 1;
+let a = 1;
 
 const getRandomInteger = (min, max) => Math.floor(Math.random() * (max - min + 1) + min) ;
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
