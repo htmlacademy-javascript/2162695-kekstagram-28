@@ -1,5 +1,4 @@
-import { getRandomInteger } from "./utils";
-import { getRandomArrayElement } from "./utils";
+import { getRandomInteger, getRandomArrayElement } from "./utils";
 
 const MESSAGES = [
   'Всё отлично!',
