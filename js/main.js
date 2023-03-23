@@ -1,5 +1,5 @@
 
-import {renderThumbnails} from "./thumbnails";
+import {renderThumbnails} from "./thumbnails.js";
 
 renderThumbnails();
 

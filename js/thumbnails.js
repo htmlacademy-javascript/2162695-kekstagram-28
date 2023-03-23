@@ -6,15 +6,13 @@ const picturesFragment = document.createDocumentFragment();
 
 const picturesGenerated = createPhotos();
 
-picturesGenerated.forEach(({url, description, likes, comments}) => {
+picturesGenerated.forEach((data) => {
   const pictureAdded = pictureTemplate.cloneNode(true);
-  pictureAdded.querySelector('.picture__img').src = url;
-  pictureAdded.querySelector('.picture__img').alt = description;
-  pictureAdded.querySelector('.picture__likes').textContent = likes;
-  pictureAdded.querySelector('.picture__comments').textContent = comments.length;
+  pictureAdded.querySelector('.picture__img').src = data.url;
+  pictureAdded.querySelector('.picture__img').alt = data.description;
+  pictureAdded.querySelector('.picture__likes').textContent = data.likes;
+  pictureAdded.querySelector('.picture__comments').textContent = data.comments.length;
   picturesFragment.appendChild(pictureAdded);
-
-  return pictureAdded;
 });
 
 const renderThumbnails = () => container.appendChild(picturesFragment);
