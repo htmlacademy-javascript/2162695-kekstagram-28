@@ -1,5 +1,5 @@
-import { createPhotos } from "./data";
-import {renderThumbnails} from "./picture";
+
+import {renderThumbnails} from "./thumbnails";
 
 renderThumbnails();
-createPhotos();
+

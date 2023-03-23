@@ -1,10 +1,10 @@
-import {createPhoto} from './data.js';
+import {createPhotos} from './data.js';
 
 const container = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picturesFragment = document.createDocumentFragment();
 
-const picturesGenerated = createPhoto();
+const picturesGenerated = createPhotos();
 
 picturesGenerated.forEach(({url, description, likes, comments}) => {
   const pictureAdded = pictureTemplate.cloneNode(true);
