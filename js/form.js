@@ -1,9 +1,12 @@
-import { activeScale, resetScale } from './form-scale.js';
+import { activateScale, resetScale } from './form-scale.js';
+import { changeEffect,resetFilter,createSlider } from './form-effects.js';
+import { addValidator,resetPristine,validatePristine } from './form-validate.js';
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
 const fileField = document.querySelector('#upload-file');
+const effectsField = document.querySelector('.effects');
 
 const onDocumentKeydown = (evt) =>{
   if (evt.key === 'Escape' && !evt.target.closest('.text_hashtags') && !evt.target.closest('.text_description')){
@@ -14,9 +17,12 @@ const onDocumentKeydown = (evt) =>{
 
 const onCancelButtonClick = () => closeModal();
 const onFileInputChange = () => openModal();
+const onEffectsFieldChange = (evt) => changeEffect(evt);
 
 const onFormSubmit = (evt) =>{
-  evt.preventDefault();
+  if (!validatePristine()){
+    evt.preventDefault();
+  }
 };
 
 const openModal = () => {
@@ -28,6 +34,8 @@ const openModal = () => {
 function closeModal() {
   form.reset();
   resetScale();
+  resetPristine();
+  resetFilter();
   overlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown',onDocumentKeydown);
@@ -36,8 +44,11 @@ function closeModal() {
 const addFormAction = () => {
   fileField.addEventListener('change', onFileInputChange);
   cancelButton.addEventListener('click', onCancelButtonClick);
+  effectsField.addEventListener('change',onEffectsFieldChange);
   form.addEventListener('submit', onFormSubmit);
-  activeScale();
+  activateScale();
+  addValidator();
+  createSlider();
 };
 
 export {addFormAction};
