@@ -3,10 +3,10 @@ const PERCENT_DIVIDER = 100;
 const SCALE_RANGE_MIN = '25%';
 const SCALE_RANGE_MAX = '100%';
 
-const image = document.querySelector('img-upload__preview img');
-const scaleInput = document.querySelector('scale__control--value');
-const smallerScaleButton = document.querySelector('scale__control--smaller');
-const biggerScaleButton = document.querySelector('scale__control--bigger');
+const image = document.querySelector('.img-upload__preview img');
+const scaleInput = document.querySelector('.scale__control--value');
+const smallerScaleButton = document.querySelector('.scale__control--smaller');
+const biggerScaleButton = document.querySelector('.scale__control--bigger');
 
 const changeScale = (value) => {
   image.style.transform = `scale(${+value.replace('%', '') / PERCENT_DIVIDER})`;
@@ -26,11 +26,11 @@ const onSmallerButtonClick = () =>{
   }
 };
 
-const activeScale = () => {
+const activateScale = () => {
   biggerScaleButton.addEventListener('click', onBiggerButtonClick);
   smallerScaleButton.addEventListener('click', onSmallerButtonClick);
 };
 
 const resetScale = () => changeScale(scaleInput.value);
 
-export{activeScale,resetScale};
+export{activateScale,resetScale};
