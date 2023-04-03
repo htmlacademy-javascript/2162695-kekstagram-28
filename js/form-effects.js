@@ -75,7 +75,7 @@ const changeEffect = (evt) => {
     },
     start:max,
     step,
-    connet:'lower',
+    connect:'lower',
   });
 
   sliderField.noUiSlider.on('update', () => {
