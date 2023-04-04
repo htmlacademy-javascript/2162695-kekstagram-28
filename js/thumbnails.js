@@ -2,6 +2,7 @@ import { openBigPicture } from './big-picture.js';
 import { getData } from './api.js';
 
 const ERROR_TIMEOUT = 5000;
+const ERROR_TEXT = 'Произошла ошибка загрузки';
 const GET_URL = 'https://28.javascript.pages.academy/kekstagram/data';
 const container = document.querySelector('.pictures');
 const pictureTemplate = document
@@ -38,7 +39,7 @@ const onGetFail = () =>{
   errorBlock.style.textAlign = 'center';
   errorBlock.style.padding = '20px';
   errorBlock.style.backgroundColor = 'black';
-  errorBlock.textContent = 'Произошла ошибка загрузки';
+  errorBlock.textContent = ERROR_TEXT;
   document.body.append(errorBlock);
 
   setTimeout(() => {
