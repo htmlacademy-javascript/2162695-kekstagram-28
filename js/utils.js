@@ -1,6 +1,21 @@
-const getRandomInteger = (min, max) => Math.floor(Math.random() * (max - min + 1) + min) ;
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+};
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
 
-export {getRandomInteger, getRandomArrayElement};
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export {shuffleArray,debounce};
 

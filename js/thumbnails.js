@@ -1,5 +1,6 @@
 import { openBigPicture } from './big-picture.js';
 import { getData } from './api.js';
+import { initFilter } from './filter.js';
 
 const ERROR_TIMEOUT = 5000;
 const ERROR_TEXT = 'Произошла ошибка загрузки';
@@ -27,7 +28,11 @@ const renderThumbnails = (data) => {
   data.forEach((item) => container.append(picturesGenerated(item)));
 };
 
-const onGetSuccess = (data) => renderThumbnails(data);
+const onGetSuccess = (data) => {
+  renderThumbnails(data);
+  initFilter(data);
+};
+
 const onGetFail = () =>{
   const errorBlock = document.createElement('div');
   errorBlock.style.position = 'fixed';
@@ -49,4 +54,4 @@ const onGetFail = () =>{
 
 const getPicturesData = () => getData(GET_URL, onGetSuccess, onGetFail);
 
-export { getPicturesData };
+export { getPicturesData, renderThumbnails };

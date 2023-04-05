@@ -10,14 +10,17 @@ const overlay = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
 const fileField = document.querySelector('#upload-file');
 const effectsField = document.querySelector('.effects');
+const submitButton = document.querySelector('.img-upload__submit');
 
 const onSendSuccess = () =>{
   renderSuccessMessage();
   closeModal();
+  submitButton.disabled = false;
 };
 
 const onSendFail = () => {
   renderFailMessage();
+  submitButton.disabled = false;
 };
 
 const onDocumentKeydown = (evt) =>{
@@ -35,8 +38,9 @@ const onFileInputChange = () => openModal();
 const onEffectsFieldChange = (evt) => changeEffect(evt);
 
 const onFormSubmit = (evt) =>{
-  if (!validatePristine()){
-    evt.preventDefault();
+  evt.preventDefault();
+  if (validatePristine()){
+    submitButton.disabled = true;
     sendData(GET_URL, onSendSuccess, onSendFail, new FormData(evt.target));
   }
 };
