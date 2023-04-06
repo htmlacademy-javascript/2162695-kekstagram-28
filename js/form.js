@@ -35,7 +35,6 @@ const onDocumentKeydown = (evt) =>{
 };
 
 const onCancelButtonClick = () => closeModal();
-const onFileInputChange = () => openModal();
 const onEffectsFieldChange = (evt) => changeEffect(evt);
 
 const onFormSubmit = (evt) =>{
@@ -51,6 +50,8 @@ const openModal = () => {
   document.body.classList.add('modal-open');
   document.addEventListener('keydown',onDocumentKeydown);
 };
+
+const onFileInputChange = () => openModal();
 
 function closeModal() {
   form.reset();

@@ -5,27 +5,6 @@ const successMessageTemplate = document.querySelector('#success').content.queryS
 let failMessageClone;
 let successMessageClone;
 
-const onDocumentKeydown = (evt) =>{
-  if (isEscape(evt)){
-    evt.preventDefault();
-    if (failMessageClone){
-      closeFailMessage();
-      return;
-    }
-    closeSuccessMessage();
-  }
-};
-
-const onFailMessageButtonClick = (evt) => {
-  evt.preventDefault();
-  closeFailMessage();
-};
-const onSuccessMessageButtonClick = (evt) => {
-  evt.preventDefault();
-  closeSuccessMessage();
-};
-
-
 const closeFailMessage = () =>{
   failMessageClone.remove();
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -36,6 +15,26 @@ const closeSuccessMessage = () =>{
   successMessageClone.remove();
   document.removeEventListener('keydown', onDocumentKeydown);
   successMessageClone = '';
+};
+
+function onDocumentKeydown(evt){
+  if (isEscape(evt)){
+    evt.preventDefault();
+    if (failMessageClone){
+      closeFailMessage();
+      return;
+    }
+    closeSuccessMessage();
+  }
+}
+
+const onFailMessageButtonClick = (evt) => {
+  evt.preventDefault();
+  closeFailMessage();
+};
+const onSuccessMessageButtonClick = (evt) => {
+  evt.preventDefault();
+  closeSuccessMessage();
 };
 
 const onFailMessageClick = (evt) =>{
