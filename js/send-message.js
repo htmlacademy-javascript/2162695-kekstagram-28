@@ -1,4 +1,4 @@
-import { isEscape } from './utils';
+import { isEscape } from './utils.js';
 
 const failMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
