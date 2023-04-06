@@ -1,10 +1,12 @@
+import { isEscape } from './utils';
+
 const failMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
 let failMessageClone;
 let successMessageClone;
 
 const onDocumentKeydown = (evt) =>{
-  if (evt.key === 'Escape'){
+  if (isEscape(evt)){
     evt.preventDefault();
     if (failMessageClone){
       closeFailMessage();
