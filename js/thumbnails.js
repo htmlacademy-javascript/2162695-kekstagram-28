@@ -49,7 +49,7 @@ const onGetFail = () =>{
 
   setTimeout(() => {
     errorBlock.remove();
-  }, ERROR_TIMEOUT)
+  }, ERROR_TIMEOUT);
 };
 
 const getPicturesData = () => getData(GET_URL, onGetSuccess, onGetFail);
