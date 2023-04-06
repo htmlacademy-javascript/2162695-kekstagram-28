@@ -3,6 +3,7 @@ import { changeEffect,resetFilter,createSlider } from './form-effects.js';
 import { addValidator,resetPristine,validatePristine } from './form-validate.js';
 import { sendData } from './api.js';
 import { renderFailMessage, renderSuccessMessage } from './send-message.js';
+import { isEscape } from './utils.js';
 
 const GET_URL = 'https://28.javascript.pages.academy/kekstagram';
 const form = document.querySelector('.img-upload__form');
@@ -24,7 +25,7 @@ const onSendFail = () => {
 };
 
 const onDocumentKeydown = (evt) =>{
-  if (evt.key === 'Escape' && !evt.target.closest('.text_hashtags') && !evt.target.closest('.text_description')){
+  if (isEscape(evt) && !evt.target.closest('.text_hashtags') && !evt.target.closest('.text_description')){
     if (document.querySelector('.error')){
       return;
     }

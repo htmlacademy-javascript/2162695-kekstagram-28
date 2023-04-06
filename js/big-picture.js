@@ -1,3 +1,5 @@
+import { isEscape } from './utils';
+
 const COMMENT_COUNTER = 5;
 
 const bigPicture = document.querySelector('.big-picture');
@@ -46,6 +48,11 @@ const fillBigPicture = (item) => {
   likesCount.textContent = item.likes;
 };
 
+const onSocialCommentsLoaderClick = (evt) => {
+  evt.preventDefault();
+  renderComments();
+};
+
 const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
@@ -68,13 +75,8 @@ const openBigPicture = (item) => {
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-function onSocialCommentsLoaderClick(evt){
-  evt.preventDefault();
-  renderComments();
-}
-
 function onDocumentKeydown(evt){
-  if (evt.key === 'Escape' && !evt.target.closest('.social_footer-text')){
+  if (isEscape(evt) && !evt.target.closest('.social_footer-text')){
     evt.preventDefault();
     closeBigPicture();
   }

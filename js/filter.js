@@ -3,6 +3,8 @@ import { shuffleArray, debounce } from './utils.js';
 
 const RANDOM_COMMENTS_COUNT = 10;
 const RERENDER_DELAY = 500;
+const DISCUSSED_ID = 'filter-discussed';
+const RANDOM_ID = 'filter-random';
 
 const imgFilters = document.querySelector('.img-filters');
 
@@ -14,10 +16,10 @@ const rerenderThumbnails = (data, id) => {
   const dataCopy = data.slice();
   let sortArray = dataCopy;
   removeElements(document.querySelectorAll('.picture'));
-  if (id === 'filter-discussed'){
+  if (id === DISCUSSED_ID ){
     sortArray = dataCopy.sort((a,b) => a.comments.length - b.comments.length);
   }
-  if (id === 'filter-random'){
+  if (id === RANDOM_ID){
     sortArray = shuffleArray(dataCopy).slice(0,RANDOM_COMMENTS_COUNT);
   }
   renderThumbnails(sortArray);
