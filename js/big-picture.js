@@ -1,4 +1,4 @@
-import { isEscape } from './utils';
+import { isEscape } from './utils.js';
 
 const COMMENT_COUNTER = 5;
 
