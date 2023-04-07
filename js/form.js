@@ -1,9 +1,10 @@
-import { activateScale, resetScale } from './form-scale.js';
-import { changeEffect,resetFilter,createSlider } from './form-effects.js';
-import { addValidator,resetPristine,validatePristine } from './form-validate.js';
-import { sendData } from './api.js';
-import { renderFailMessage, renderSuccessMessage } from './send-message.js';
-import { isEscape } from './utils.js';
+import {activateScale, resetScale} from './form-scale.js';
+import {changeEffect, resetFilter, createSlider} from './form-effects.js';
+import {addValidator, resetPristine, validatePristine} from './form-validate.js';
+import {sendData} from './api.js';
+import {renderFailMessage, renderSuccessMessage} from './send-message.js';
+import {isEscape} from './utils.js';
+import {getUserPhoto} from './user-photo.js';
 
 const GET_URL = 'https://28.javascript.pages.academy/kekstagram';
 const form = document.querySelector('.img-upload__form');
@@ -13,7 +14,7 @@ const fileField = document.querySelector('#upload-file');
 const effectsField = document.querySelector('.effects');
 const submitButton = document.querySelector('.img-upload__submit');
 
-const onSendSuccess = () =>{
+const onSendSuccess = () => {
   renderSuccessMessage();
   closeModal();
   submitButton.disabled = false;
@@ -24,9 +25,9 @@ const onSendFail = () => {
   submitButton.disabled = false;
 };
 
-const onDocumentKeydown = (evt) =>{
-  if (isEscape(evt) && !evt.target.closest('.text_hashtags') && !evt.target.closest('.text_description')){
-    if (document.querySelector('.error')){
+const onDocumentKeydown = (evt) => {
+  if (isEscape(evt) && !evt.target.closest('.text_hashtags') && !evt.target.closest('.text_description')) {
+    if (document.querySelector('.error')) {
       return;
     }
     evt.preventDefault();
@@ -37,9 +38,9 @@ const onDocumentKeydown = (evt) =>{
 const onCancelButtonClick = () => closeModal();
 const onEffectsFieldChange = (evt) => changeEffect(evt);
 
-const onFormSubmit = (evt) =>{
+const onFormSubmit = (evt) => {
   evt.preventDefault();
-  if (validatePristine()){
+  if (validatePristine()) {
     submitButton.disabled = true;
     sendData(GET_URL, onSendSuccess, onSendFail, new FormData(evt.target));
   }
@@ -48,10 +49,13 @@ const onFormSubmit = (evt) =>{
 const openModal = () => {
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  document.addEventListener('keydown',onDocumentKeydown);
+  document.addEventListener('keydown', onDocumentKeydown);
 };
 
-const onFileInputChange = () => openModal();
+const onFileInputChange = (evt) => {
+  openModal();
+  getUserPhoto(evt);
+};
 
 function closeModal() {
   form.reset();
@@ -60,13 +64,13 @@ function closeModal() {
   resetFilter();
   overlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown',onDocumentKeydown);
+  document.removeEventListener('keydown', onDocumentKeydown);
 }
 
 const addFormAction = () => {
   fileField.addEventListener('change', onFileInputChange);
   cancelButton.addEventListener('click', onCancelButtonClick);
-  effectsField.addEventListener('change',onEffectsFieldChange);
+  effectsField.addEventListener('change', onEffectsFieldChange);
   form.addEventListener('submit', onFormSubmit);
   activateScale();
   addValidator();

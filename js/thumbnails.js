@@ -1,22 +1,19 @@
-import { openBigPicture } from './big-picture.js';
-import { getData } from './api.js';
-import { initFilter } from './filter.js';
+import {openBigPicture} from './big-picture.js';
+import {getData} from './api.js';
+import {initFilter} from './filter.js';
 
 const ERROR_TIMEOUT = 5000;
 const ERROR_TEXT = 'Произошла ошибка загрузки';
 const GET_URL = 'https://28.javascript.pages.academy/kekstagram/data';
 const container = document.querySelector('.pictures');
-const pictureTemplate = document
-  .querySelector('#picture')
-  .content.querySelector('.picture');
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const picturesGenerated = (item) => {
   const thumbnail = pictureTemplate.cloneNode(true);
   thumbnail.querySelector('.picture__img').src = item.url;
   thumbnail.querySelector('.picture__img').alt = item.description;
   thumbnail.querySelector('.picture__likes').textContent = item.likes;
-  thumbnail.querySelector('.picture__comments').textContent =
-    item.comments.length;
+  thumbnail.querySelector('.picture__comments').textContent = item.comments.length;
   thumbnail.addEventListener('click', (evt) => {
     evt.preventDefault();
     openBigPicture(item);
@@ -33,7 +30,7 @@ const onGetSuccess = (data) => {
   initFilter(data);
 };
 
-const onGetFail = () =>{
+const onGetFail = () => {
   const errorBlock = document.createElement('div');
   errorBlock.style.position = 'fixed';
   errorBlock.style.top = '0';
@@ -54,4 +51,4 @@ const onGetFail = () =>{
 
 const getPicturesData = () => getData(GET_URL, onGetSuccess, onGetFail);
 
-export { getPicturesData, renderThumbnails };
+export {getPicturesData, renderThumbnails};

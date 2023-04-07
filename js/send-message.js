@@ -1,26 +1,26 @@
-import { isEscape } from './utils.js';
+import {isEscape} from './utils.js';
 
 const failMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
 let failMessageClone;
 let successMessageClone;
 
-const closeFailMessage = () =>{
+const closeFailMessage = () => {
   failMessageClone.remove();
   document.removeEventListener('keydown', onDocumentKeydown);
   failMessageClone = '';
 };
 
-const closeSuccessMessage = () =>{
+const closeSuccessMessage = () => {
   successMessageClone.remove();
   document.removeEventListener('keydown', onDocumentKeydown);
   successMessageClone = '';
 };
 
-function onDocumentKeydown(evt){
-  if (isEscape(evt)){
+function onDocumentKeydown(evt) {
+  if (isEscape(evt)) {
     evt.preventDefault();
-    if (failMessageClone){
+    if (failMessageClone) {
       closeFailMessage();
       return;
     }
@@ -37,14 +37,14 @@ const onSuccessMessageButtonClick = (evt) => {
   closeSuccessMessage();
 };
 
-const onFailMessageClick = (evt) =>{
-  if (evt.target.closest('.error_inner')){
+const onFailMessageClick = (evt) => {
+  if (evt.target.closest('.error_inner')) {
     closeFailMessage();
   }
 };
 
-const onSuccessMessageClick = (evt) =>{
-  if (evt.target.closest('.success_inner')){
+const onSuccessMessageClick = (evt) => {
+  if (evt.target.closest('.success_inner')) {
     closeSuccessMessage();
   }
 };
@@ -65,4 +65,4 @@ const renderSuccessMessage = () => {
   successMessageClone.addEventListener('click', onSuccessMessageClick);
 };
 
-export {renderFailMessage,renderSuccessMessage};
+export {renderFailMessage, renderSuccessMessage};

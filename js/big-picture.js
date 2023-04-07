@@ -1,4 +1,4 @@
-import { isEscape } from './utils.js';
+import {isEscape} from './utils.js';
 
 const COMMENT_COUNTER = 5;
 
@@ -19,7 +19,7 @@ const fillCommentCount = () => {
   socialCommentsCount.innerHTML = `${showingComments} из <span class="comments-count">${comments.length}</span> комментариев`;
 };
 
-const createComment = (comment) =>{
+const createComment = (comment) => {
   const commentTemplate = socialCommentsItem.cloneNode(true);
   const img = commentTemplate.querySelector('.social__picture');
   commentTemplate.querySelector('.social__text').textContent = comment.message;
@@ -29,12 +29,12 @@ const createComment = (comment) =>{
 };
 
 const renderComments = () => {
-  const currentComments = comments.slice(showingComments,showingComments + COMMENT_COUNTER);
+  const currentComments = comments.slice(showingComments, showingComments + COMMENT_COUNTER);
   showingComments += COMMENT_COUNTER;
   showingComments = Math.min(showingComments, comments.length);
   currentComments.forEach((comment) => socialCommentsList.append(createComment(comment)));
   fillCommentCount();
-  if (showingComments >= comments.length){
+  if (showingComments >= comments.length) {
     socialCommentsLoader.classList.add('hidden');
     return;
   }
@@ -56,9 +56,9 @@ const onSocialCommentsLoaderClick = (evt) => {
 const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  bigPictureCancel.removeEventListener('click',onBigPictureCancelClick);
+  bigPictureCancel.removeEventListener('click', onBigPictureCancelClick);
   document.removeEventListener('keydown', onDocumentKeydown);
-  socialCommentsLoader.removeEventListener('click',onSocialCommentsLoaderClick);
+  socialCommentsLoader.removeEventListener('click', onSocialCommentsLoaderClick);
   comments = [];
   showingComments = 0;
 };
@@ -70,21 +70,21 @@ const openBigPicture = (item) => {
   document.body.classList.add('modal-open');
   fillBigPicture(item);
   renderComments();
-  bigPictureCancel.addEventListener('click',onBigPictureCancelClick);
-  socialCommentsLoader.addEventListener('click',onSocialCommentsLoaderClick);
+  bigPictureCancel.addEventListener('click', onBigPictureCancelClick);
+  socialCommentsLoader.addEventListener('click', onSocialCommentsLoaderClick);
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-function onDocumentKeydown(evt){
-  if (isEscape(evt) && !evt.target.closest('.social_footer-text')){
+function onDocumentKeydown(evt) {
+  if (isEscape(evt) && !evt.target.closest('.social_footer-text')) {
     evt.preventDefault();
     closeBigPicture();
   }
 }
 
-function onBigPictureCancelClick(evt){
+function onBigPictureCancelClick(evt) {
   evt.preventDefault();
   closeBigPicture();
 }
 
-export { openBigPicture };
+export {openBigPicture};

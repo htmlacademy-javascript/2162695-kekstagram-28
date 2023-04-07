@@ -12,15 +12,15 @@ const changeScale = (value) => {
   image.style.transform = `scale(${+value.replace('%', '') / PERCENT_DIVIDER})`;
 };
 
-const onBiggerButtonClick = () =>{
-  if (scaleInput.value !== SCALE_RANGE_MAX){
+const onBiggerButtonClick = () => {
+  if (scaleInput.value !== SCALE_RANGE_MAX) {
     scaleInput.value = `${+scaleInput.value.replace('%', '') + SCALE_STEP}%`;
     changeScale(scaleInput.value);
   }
 };
 
-const onSmallerButtonClick = () =>{
-  if (scaleInput.value !== SCALE_RANGE_MIN){
+const onSmallerButtonClick = () => {
+  if (scaleInput.value !== SCALE_RANGE_MIN) {
     scaleInput.value = `${+scaleInput.value.replace('%', '') - SCALE_STEP}%`;
     changeScale(scaleInput.value);
   }
@@ -33,4 +33,4 @@ const activateScale = () => {
 
 const resetScale = () => changeScale(scaleInput.value);
 
-export{activateScale,resetScale};
+export {activateScale, resetScale};

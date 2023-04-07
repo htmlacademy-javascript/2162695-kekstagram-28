@@ -11,11 +11,11 @@ const getData = (url, onSuccess, onFail) => {
 
 const sendData = (url, onSuccess, onFail, body) => {
   fetch(url, {
-    method:'POST',
+    method: 'POST',
     body,
   })
     .then((response) => {
-      if ((response.ok)){
+      if (response.ok) {
         onSuccess();
       } else {
         onFail();
