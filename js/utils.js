@@ -8,7 +8,7 @@ const shuffleArray = (array) => {
   return array;
 };
 
-function debounce (callback, timeoutDelay = 500) {
+function debounce(callback, timeoutDelay = 500) {
   let timeoutId;
 
   return (...rest) => {
@@ -19,5 +19,4 @@ function debounce (callback, timeoutDelay = 500) {
 
 const isEscape = (evt) => evt.key === 'Escape';
 
-export {shuffleArray,debounce, isEscape};
-
+export {shuffleArray, debounce, isEscape};
